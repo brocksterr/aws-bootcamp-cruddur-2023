@@ -14,7 +14,7 @@
 * ~~Destroy your root account credentials, Set MFA, IAM role~~ - **Done** - Also using temp credentials through MFA with a session token.
 * ~~Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue~~. - **Done** - Created Evenbridge for all services under aws.health and created an SNS topic to send an email.
 * ~~Review all the questions of each pillars in the Well Architected Tool (No specialized lens)~~ - **Done** - Lot of questions for each section. Most seem useful.
-* Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts - Done -
+* ~~Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts~~ - Done -
 * ![1676671967895](image/week0/1676671967895.png)
 * ~~Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility.~~ - **Done** - I reviewed the list of limits (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html) and knew about some of them. Route53, IAM, and WorkSpaces.
 * ~~Open a support ticket and request a service limit.~~ - **Done** - I'm considering this done. I didn't open a support ticket, but have opened support tickets in the past for billing and account support. Almost opened a support ticket a while back for Route53 as I'm near the domain limit, but didn't as I'm not there yet.
