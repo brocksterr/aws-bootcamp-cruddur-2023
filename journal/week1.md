@@ -27,14 +27,30 @@ Research best practices of Dockerfiles and attempt to implement it in your Docke
 
 Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces - **Done** - Already had docker desktop and vscode installed. Added the docker plugin to VScode. Checked out my repo and ran docker up. Had issues getting the frontend container up, but that was only because I did not have npm installed. I installed NVM and am using it for npm. I tried doing some of these without watching the videos and I now see that you cover this issue in the notification video. Additionally, once I got the containers running, I could load the page but I was not getting any content in the feed. I duplicated the docker-compose file, renamed it to docker-compose-local and changed the envars to localhost. A docker-compose restart and then everything worked. 
 
-Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. - **Done** - Launched a micro instance, yum install docker
+Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. - **Done** 
 
-## Notes
+* Launched an Amazon Linux t2 micro instance
+* *sudo yum update*
+* sudo yum search docker
+* sudo yum install docker
+* sudo systemctl enable docker.service
+* sudo systemctl start docker.service
+* sudo systemctl status docker.service
+* Running docker version 20.10.17
+* Created a Dockerfile to pull down a rocky image with Apache2. Create a generic index.html that I copied into the container (COPY index.html /var/www/html/index.html). Built the docker image.
+* Started a container from the image, verfied container, and successfully curled apache from the EC2 instannce which returned my index.html what was "My Docker Apache site!"
 
-Spelling is important and can reduce the need for troubleshooting....
+'''
+
+sudo docker run -d -p 80:80 --name mysite mysite
+sudo docker ps
+curl 127.0.0.1:80
+
+'''
 
 ## Troubleshooting:
 
 * Had to do some troubleshooting becuause I misstyped the import statement in app.py for "notifications_activities" - **Resolved**
 * Had to do some troubleshooting becuase I was receiving "NameError: name 'NotificationsActivities' is not defined" while accessing api/activities/notifications - **Resolved**
 * Had to figure out why my feed was blank. Inspected the page and saw a couple of errors that indicated a network problem. Discovered that the ports were private and not public. Making them public fixed the issue. - **Resolved** Although, it still complains about a websocket (ws) issue to the backend.
+* I ran into the same issue as above with deploying locally. I ddin't have npm installed. I isntalled NVM and then used it to install npm. Afterwards, everything ran as expected.
