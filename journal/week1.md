@@ -9,3 +9,14 @@ Implement a healthcheck in the V3 Docker compose file
 Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
 Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces
 Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes.
+
+
+
+
+Notes
+
+Troubleshooting:
+
+* Had to do some troubleshooting becuause I misstyped the import statement in app.py for "notifications_activities" - **Resolved**
+* Had to do some troubleshooting becuase I was receiving "NameError: name 'NotificationsActivities' is not defined" while accessing api/activities/notifications - **Resolved**
+*
