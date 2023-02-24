@@ -4,16 +4,15 @@
 
 Run the dockerfile CMD as an external script
 Push and tag a image to DockerHub (they have a free tier)
-Use multi-stage building for a Dockerfile build
+Use multi-stage building for a Dockerfile build - **Done** - I've used Docker for a while, but never did a multi-stage build. I folowed the tutorial on Docker.com. [Multi-Stage Docker Build](https://docs.docker.com/build/building/multi-stage/)
 Implement a healthcheck in the V3 Docker compose file
-Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
-Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces
-Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes.
+Research best practices of Dockerfiles and attempt to implement it in your Dockerfile - Done - Referenced the [Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) page from Docker.com.
+Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces - **Done** - Already had docker desktop and vscode installed. Added the docker plugin to VScode. Checked out my repo and ran docker up.
+Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. - **Done** - Launched a micro instance, yum install docker
 
 ## Notes
 
 Spelling is important and can reduce the need for troubleshooting....
-
 
 ## Troubleshooting:
 
