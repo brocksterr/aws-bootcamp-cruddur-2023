@@ -18,6 +18,7 @@ services:
       OTEL_SERVICE_NAME: 'frontend-react-js'
       OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
       OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
+      HONEYCOMB_API_KEY: ${HONEYCOMB_API_KEY}"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
