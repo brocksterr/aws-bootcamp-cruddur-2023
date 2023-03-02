@@ -10,5 +10,7 @@ const {
 const sdk = new HoneycombSDK({
   instrumentations: [getNodeAutoInstrumentations()]
 });
+const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
+diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
 sdk.start()
