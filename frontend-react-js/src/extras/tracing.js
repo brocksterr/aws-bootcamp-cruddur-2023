@@ -4,6 +4,7 @@ import { ZoneContextManager } from '@opentelemetry/context-zone';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 // import { trace } from '@opentelemetry/api';
+import { getWebAutoInstrumentations } from '@opentelemetry/auto-instrumentations-web';
 
 // For sending traces for all http requests
 import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
@@ -17,6 +18,8 @@ const exporter = new OTLPTraceExporter({
 
 //Reference Docs
 //https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#automatically-propagate-the-trace-context-header
+//https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
+//https://www.w3.org/TR/trace-context/
 
 const provider = new WebTracerProvider({
   resource: new Resource({
@@ -31,16 +34,19 @@ provider.register({
 
 registerInstrumentations({
   instrumentations: [
-    new XMLHttpRequestInstrumentation({
-      propagateTraceHeaderCorsUrls: [
-        new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
-      ]
+    getWebAutoInstrumentations({
+      // load custom configuration for xml-http-request instrumentation
+      '@opentelemetry/instrumentation-xml-http-request': {
+        propagateTraceHeaderCorsUrls: [
+          new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
+        ],
+      },
+      '@opentelemetry/instrumentation-fetch': {
+        propagateTraceHeaderCorsUrls: [
+          new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
+          ],
+      },
     }),
-    new FetchInstrumentation({
-      propagateTraceHeaderCorsUrls: [
-        new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
-      ]
-    }),
-    new DocumentLoadInstrumentation(),
   ],
-});
+ });
+ 
