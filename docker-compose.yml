@@ -15,10 +15,8 @@ services:
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
-      OTEL_SERVICE_NAME: 'frontend-react-js'
-      OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
-      OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
-      HONEYCOMB_API_KEY: ${HONEYCOMB_API_KEY}"
+      REACT_APP_OTEL_COLLECTOR_ENDPOINT: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      OTEL_SERVICE_NAME: "FRONTEND"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
@@ -46,6 +44,23 @@ services:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
+  otel-collector:
+    environment:
+      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      HONEYCOMB_API_KEY: ${HONEYCOMB_API_KEY}
+      OTEL_EXPORTER_OTLP_URL: "https://api.honeycomb.io:443"
+    image: otel/opentelemetry-collector
+    command: [ --config=/etc/otel-collector-config.yml ]
+    volumes:
+      - "./otel-collector-config.yml:/etc/otel-collector-config.yml"
+    ports:
+      # - 1888:1888 # pprof extension
+      # - 8888:8888 # Prometheus metrics exposed by the collector
+      # - 8889:8889 # Prometheus exporter metrics
+      # - 13133:13133 # health_check extension
+      # - 4317:4317 # OTLP gRPC receiver
+      - 4318:4318 # OTLP http receiver
+      # - 55679:55679 # zpages extension
 
 # the name flag is a hack to change the default prepend folder
 # name when outputting the image names

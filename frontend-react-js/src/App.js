@@ -1,5 +1,4 @@
 import './App.css';
-import './tracing';
 
 import HomeFeedPage from './pages/HomeFeedPage';
 import NotificationsFeedPage from './pages/NotificationsFeedPage';
