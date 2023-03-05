@@ -22,6 +22,10 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
+### AWS XRAY ###
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
 ### Initialize tracing and an exporter for Honeycomb ###
 provider = TracerProvider()
 processor = BatchSpanProcessor(OTLPSpanExporter())
@@ -44,6 +48,11 @@ cors = CORS(
   allow_headers=["content-type", "if-modified-since", "traceparent"],
   methods="OPTIONS,GET,HEAD,POST"
 )
+
+### AWS XRAY ###
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='Backend', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
 
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():
