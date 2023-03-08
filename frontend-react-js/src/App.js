@@ -30,6 +30,10 @@ const router = createBrowserRouter([
     element: <UserFeedPage />
   },
   {
+    path: "/@andrewbrown",
+    element: <UserFeedPage />
+  },
+  {
     path: "/messages",
     element: <MessageGroupsPage />
   },
