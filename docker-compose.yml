@@ -25,8 +25,8 @@ services:
       OTEL_SERVICE_NAME: "FRONTEND"
       REACT_APP_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT APP_AWS_USER_POOLS_ID: "us-east-1_pkWmMQ3sS"
-      REACT_APP_CLIENT_ID: "1vfervfh1cl0i2n8i5k6l0bq32"
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_kh95ORQIV"
+      REACT_APP_CLIENT_ID: "2preju767l7hu70sto96861tld"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
